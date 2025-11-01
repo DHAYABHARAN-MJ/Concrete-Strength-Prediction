@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Concrete Strength Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Concrete Strength Prediction</h1>
+        <form method="POST" id="predictForm">
+            <div class="input-group">
+                <label>Cement (kg/m³):</label>
+                <input type="number" name="cement" step="any" value="{{ input_data.get('cement', '') }}" required>
+            </div>
+            <div class="input-group">
+                <label>Blast Furnace Slag (kg/m³):</label>
+                <input type="number" name="slag" step="any" value="{{ input_data.get('slag', '') }}" required>
+            </div>
+            <div class="input-group">
+                <label>Fly Ash (kg/m³):</label>
+                <input type="number" name="flyash" step="any" value="{{ input_data.get('flyash', '') }}" required>
+            </div>
+            <div class="input-group">
+                <label>Water (kg/m³):</label>
+                <input type="number" name="water" step="any" value="{{ input_data.get('water', '') }}" required>
+            </div>
+            <div class="input-group">
+                <label>Superplasticizer (kg/m³):</label>
+                <input type="number" name="superplasticizer" step="any" value="{{ input_data.get('superplasticizer', '') }}" required>
+            </div>
+            <div class="input-group">
+                <label>Coarse Aggregate (kg/m³):</label>
+                <input type="number" name="coarseagg" step="any" value="{{ input_data.get('coarseagg', '') }}" required>
+            </div>
+            <div class="input-group">
+                <label>Fine Aggregate (kg/m³):</label>
+                <input type="number" name="fineagg" step="any" value="{{ input_data.get('fineagg', '') }}" required>
+            </div>
+            <div class="input-group">
+                <label>Age (days):</label>
+                <input type="number" name="age" step="any" value="{{ input_data.get('age', '') }}" required>
+            </div>
+
+            <div class="buttons">
+                <button type="submit" class="predict-btn">Predict</button>
+                <button type="button" class="reset-btn" onclick="resetForm()">Reset</button>
+            </div>
+        </form>
+
+        {% if prediction %}
+        <div class="result">
+            <h2>Predicted Compressive Strength: <span>{{ prediction }} MPa</span></h2>
+        </div>
+        {% endif %}
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
